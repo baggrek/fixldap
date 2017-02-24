@@ -16,7 +16,7 @@
 		    [
 		        "attrib"  => "userPassword",
 		        "modtype" => LDAP_MODIFY_BATCH_ADD,
-		        "values"  => ['{SHA}' . base64_encode(pack('H*',sha1($sandi)))],
+		        "values"  => [$sandi],
 		    ],	  	    
 		];
 	    
@@ -29,7 +29,7 @@
 		   
 		    $data = ldap_modify_batch($ldap_con, "cn=$id, $ldap_dn2", $modifs);
 		    $data = ldap_rename($ldap_con, "cn=$id, $ldap_dn2", "cn=$user_name", NULL, TRUE);
-		    $update = mysqli_query($koneksi, "UPDATE bejo set cn='$user_name', UserName='$user_name', Attribute= 'Password', op= '==', Value='$sandi' where cn='$id'");
+		    $update = mysql_query(UPDATE radcheck set cn='$user_name', UserName='$user_name', Attribute= 'Password', op= '==', Value='$sandi' where cn='$id');
 		    echo "<script>alert('BERHASIL ....');</script>";
 		    echo "<meta http-equiv='refresh' content='0; url=index.php'>";
 		}else{
