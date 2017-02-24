@@ -11,7 +11,7 @@
 	    $info["sn"] = $user_name;
 	    $info["objectclass"] [0]= "inetOrgPerson";
 	    $info["objectclass"] [1]= "radiusprofile";
-	    $info["userPassword"] = '{SHA}' . base64_encode(pack('H*',sha1($sandi)));;
+	    $info["userPassword"] = $sandi;
 	    $info["uid"] = $user_name;
 
 	    $cn = $user_name;
@@ -27,7 +27,7 @@
 		    // bind with appropriate dn to give update access
 		    $data = ldap_bind($ldap_con, $ldap_dn, $ldap_pass);
 		    $data = ldap_add($ldap_con, "cn=$user_name, $ldap_dn2", $info);
-		    $input = mysqli_query($koneksi, "INSERT INTO bejo VALUES('$cn', '$UserName', '$Attribute', '$op', '$Value')");
+		    $input = (INSERT INTO bejo VALUES('$cn', '$UserName', '$Attribute', '$op', '$Value'));
 		    
 		    echo "<script>alert('BERHASIL ....');</script>";
 		    echo "<meta http-equiv='refresh' content='0; url=index.php'>";
