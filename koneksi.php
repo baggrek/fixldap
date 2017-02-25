@@ -12,8 +12,9 @@ ldap_set_option($ldap_con, LDAP_OPT_PROTOCOL_VERSION, 3);
 $host = "localhost";
 $user = "radius";
 $pass = "mysqlsecret";
-$name = "radius";
+$name = "radius";//isi nama database y
  
 $koneksi = mysql_connect($host, $user, $pass) ;
+mysql_select_db($name, $koneksi);
 
 ?>
